@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:lapis_5"
+    }
+  ],
+  "result": {
+    "item": "compressium:lapis_4",
+    "count": 9
+  }
+}

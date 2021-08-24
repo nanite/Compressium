@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "minecraft:block/soul_sand"
+  },
+  "loader": "forge:multi-layer",
+  "layers": {
+    "solid": {
+      "parent": "minecraft:block/soul_sand"
+    },
+    "translucent": {
+      "parent": "minecraft:block/cube_all",
+      "textures": {
+        "all": "compressium:block/layer_9"
+      }
+    }
+  }
+}

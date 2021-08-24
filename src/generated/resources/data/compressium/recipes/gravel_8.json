@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:gravel_7"
+    }
+  },
+  "result": {
+    "item": "compressium:gravel_8"
+  }
+}

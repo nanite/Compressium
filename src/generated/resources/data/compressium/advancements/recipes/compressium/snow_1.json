@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:snow_1"
+    ]
+  },
+  "criteria": {
+    "has_snow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:snow"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:snow_1"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_snow",
+      "has_the_recipe"
+    ]
+  ]
+}

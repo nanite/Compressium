@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:redsand_7_uncraft"
+    ]
+  },
+  "criteria": {
+    "has_compressed_redsand_x7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:redsand_7"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:redsand_7_uncraft"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_redsand_x7",
+      "has_the_recipe"
+    ]
+  ]
+}

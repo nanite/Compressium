@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:soulsand_9"
+    }
+  ],
+  "result": {
+    "item": "compressium:soulsand_8",
+    "count": 9
+  }
+}

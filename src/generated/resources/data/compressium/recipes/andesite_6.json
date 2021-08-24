@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:andesite_5"
+    }
+  },
+  "result": {
+    "item": "compressium:andesite_6"
+  }
+}

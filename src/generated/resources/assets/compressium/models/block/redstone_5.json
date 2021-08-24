@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "minecraft:block/redstone_block"
+  },
+  "loader": "forge:multi-layer",
+  "layers": {
+    "solid": {
+      "parent": "minecraft:block/redstone_block"
+    },
+    "translucent": {
+      "parent": "minecraft:block/cube_all",
+      "textures": {
+        "all": "compressium:block/layer_5"
+      }
+    }
+  }
+}

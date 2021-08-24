@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:gold_6"
+    }
+  },
+  "result": {
+    "item": "compressium:gold_7"
+  }
+}

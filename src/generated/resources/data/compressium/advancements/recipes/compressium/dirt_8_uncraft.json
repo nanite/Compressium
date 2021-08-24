@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:dirt_8_uncraft"
+    ]
+  },
+  "criteria": {
+    "has_compressed_dirt_x8": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:dirt_8"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:dirt_8_uncraft"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_dirt_x8",
+      "has_the_recipe"
+    ]
+  ]
+}

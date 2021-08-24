@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:quartz_3"
+    }
+  },
+  "result": {
+    "item": "compressium:quartz_4"
+  }
+}

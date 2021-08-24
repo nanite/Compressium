@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:clay_8"
+    ]
+  },
+  "criteria": {
+    "has_compressed_clay_x7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:clay_7"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:clay_8"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_clay_x7",
+      "has_the_recipe"
+    ]
+  ]
+}

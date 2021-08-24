@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:andesite_7"
+    ]
+  },
+  "criteria": {
+    "has_compressed_andesite_x6": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:andesite_6"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:andesite_7"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_andesite_x6",
+      "has_the_recipe"
+    ]
+  ]
+}

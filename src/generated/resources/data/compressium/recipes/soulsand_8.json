@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:soulsand_7"
+    }
+  },
+  "result": {
+    "item": "compressium:soulsand_8"
+  }
+}

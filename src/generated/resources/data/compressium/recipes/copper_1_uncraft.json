@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:copper_1"
+    }
+  ],
+  "result": {
+    "item": "minecraft:copper_block",
+    "count": 9
+  }
+}

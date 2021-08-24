@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:diamond_9"
+    ]
+  },
+  "criteria": {
+    "has_compressed_diamond_x8": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:diamond_8"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:diamond_9"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_diamond_x8",
+      "has_the_recipe"
+    ]
+  ]
+}

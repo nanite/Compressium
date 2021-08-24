@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:diamond_9"
+    }
+  ],
+  "result": {
+    "item": "compressium:diamond_8",
+    "count": 9
+  }
+}

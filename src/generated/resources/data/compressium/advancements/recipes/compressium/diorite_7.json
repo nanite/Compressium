@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:diorite_7"
+    ]
+  },
+  "criteria": {
+    "has_compressed_diorite_x6": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:diorite_6"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:diorite_7"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_diorite_x6",
+      "has_the_recipe"
+    ]
+  ]
+}

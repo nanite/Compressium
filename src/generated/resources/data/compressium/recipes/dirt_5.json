@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:dirt_4"
+    }
+  },
+  "result": {
+    "item": "compressium:dirt_5"
+  }
+}

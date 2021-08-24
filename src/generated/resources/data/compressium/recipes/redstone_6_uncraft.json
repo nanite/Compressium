@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:redstone_6"
+    }
+  ],
+  "result": {
+    "item": "compressium:redstone_5",
+    "count": 9
+  }
+}

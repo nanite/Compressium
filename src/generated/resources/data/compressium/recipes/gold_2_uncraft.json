@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:gold_2"
+    }
+  ],
+  "result": {
+    "item": "compressium:gold_1",
+    "count": 9
+  }
+}

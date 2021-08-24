@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All Rights Reserved"
+issueTrackerURL="https://github.com/nanite/Compressium"
+
+[[mods]]
+modId="compressium"
+version="${file.jarVersion}"
+displayName="Compressium"
+displayURL="http://dinnerbeef.com"
+logoFile="Compressium_Logo.png"
+credits="Thanks to LatvianModder, Flanks, Mikey: Helping Wirte This Mod With Me. Thanks To Gigaherz: For The Textures"
+authors="DinnerBeef"
+description=''' Adding comprseed blocks to the game since 2019 '''

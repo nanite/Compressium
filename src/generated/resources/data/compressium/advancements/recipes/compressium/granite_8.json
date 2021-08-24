@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:granite_8"
+    ]
+  },
+  "criteria": {
+    "has_compressed_granite_x7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:granite_7"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:granite_8"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_granite_x7",
+      "has_the_recipe"
+    ]
+  ]
+}

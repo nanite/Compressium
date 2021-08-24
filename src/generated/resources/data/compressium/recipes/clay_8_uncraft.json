@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:clay_8"
+    }
+  ],
+  "result": {
+    "item": "compressium:clay_7",
+    "count": 9
+  }
+}

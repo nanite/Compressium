@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:quartz_5"
+    }
+  ],
+  "result": {
+    "item": "compressium:quartz_4",
+    "count": 9
+  }
+}

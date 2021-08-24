@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:soulsand_9_uncraft"
+    ]
+  },
+  "criteria": {
+    "has_compressed_soulsand_x9": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:soulsand_9"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:soulsand_9_uncraft"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_soulsand_x9",
+      "has_the_recipe"
+    ]
+  ]
+}

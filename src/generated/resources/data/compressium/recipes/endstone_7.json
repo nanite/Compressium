@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:endstone_6"
+    }
+  },
+  "result": {
+    "item": "compressium:endstone_7"
+  }
+}

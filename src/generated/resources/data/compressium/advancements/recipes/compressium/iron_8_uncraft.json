@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:iron_8_uncraft"
+    ]
+  },
+  "criteria": {
+    "has_compressed_iron_x8": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:iron_8"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:iron_8_uncraft"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_iron_x8",
+      "has_the_recipe"
+    ]
+  ]
+}

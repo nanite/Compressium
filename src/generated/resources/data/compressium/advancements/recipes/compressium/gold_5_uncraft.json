@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "compressium:gold_5_uncraft"
+    ]
+  },
+  "criteria": {
+    "has_compressed_gold_x5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:gold_5"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "compressium:gold_5_uncraft"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_gold_x5",
+      "has_the_recipe"
+    ]
+  ]
+}
