@@ -16,7 +16,7 @@ apply plugin: 'maven-publish'
 def ENV = System.getenv()
 def buildNumber = ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "custom"
 version = "${mod_version}." + buildNumber
-group = 'me.dinnerbeef.compressium'
+group = '${group_id}'
 archivesBaseName = "Compressium-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)

@@ -34,7 +34,7 @@ public class CompressiumLanguageProvider extends LanguageProvider {
             add("itemGroup.compressium", localeMap.get("itemGroup"));
             for (CompressiumType type : CompressiumType.VALUES) {
                 for (int i = 0; i < 9; i++) {
-                    add(type.blocks.get(i), localeMap.get(type.name) + " ("+(i+1)+"X)");
+                    add(type.blocks.get(i), localeMap.get(type.name) + " ("+(i+1)+"x)");
                 }
             }
         }

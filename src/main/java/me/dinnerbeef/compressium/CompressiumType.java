@@ -39,8 +39,8 @@ public enum CompressiumType {
             new ResourceLocation("minecraft","block/netherrack"),
             NetherrackBlock::new),
     SNOW("snow",
-            new ResourceLocation("minecraft", "snow"),
-            new ResourceLocation("minecraft", "block/snow"),
+            new ResourceLocation("minecraft", "snow_block"),
+            new ResourceLocation("minecraft", "block/snow"), // This one needs to be snow an not snow_block.
             new ResourceLocation("minecraft","block/snow_block"),
             Block::new),
     SOULSAND("soulsand",

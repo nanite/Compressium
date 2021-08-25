@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-
     "compressium:iron_1",
     "compressium:iron_2",
     "compressium:iron_3",
@@ -11,7 +10,6 @@
     "compressium:iron_7",
     "compressium:iron_8",
     "compressium:iron_9",
-
     "compressium:gold_1",
     "compressium:gold_2",
     "compressium:gold_3",
@@ -21,7 +19,6 @@
     "compressium:gold_7",
     "compressium:gold_8",
     "compressium:gold_9",
-
     "compressium:diamond_1",
     "compressium:diamond_2",
     "compressium:diamond_3",
@@ -31,7 +28,6 @@
     "compressium:diamond_7",
     "compressium:diamond_8",
     "compressium:diamond_9",
-
     "compressium:emerald_1",
     "compressium:emerald_2",
     "compressium:emerald_3",
@@ -41,7 +37,6 @@
     "compressium:emerald_7",
     "compressium:emerald_8",
     "compressium:emerald_9",
-
     "compressium:netherite_1",
     "compressium:netherite_2",
     "compressium:netherite_3",
@@ -50,7 +45,15 @@
     "compressium:netherite_6",
     "compressium:netherite_7",
     "compressium:netherite_8",
-    "compressium:netherite_9"
-
+    "compressium:netherite_9",
+    "compressium:copper_1",
+    "compressium:copper_2",
+    "compressium:copper_3",
+    "compressium:copper_4",
+    "compressium:copper_5",
+    "compressium:copper_6",
+    "compressium:copper_7",
+    "compressium:copper_8",
+    "compressium:copper_9"
   ]
 }

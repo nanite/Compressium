@@ -21,6 +21,9 @@ public class CompressiumDataGenerator {
             generator.addProvider(new CompressiumItemModelProvider(generator, event.getExistingFileHelper()));
             //this only generates the english language portion. other languages need their own provider
             generator.addProvider(new CompressiumLanguageProvider(generator, "en_us"));
+            CompressiumBlockTagProvider compressiumBlockTagProvider = new CompressiumBlockTagProvider(generator, event.getExistingFileHelper());
+            generator.addProvider(compressiumBlockTagProvider);
+            generator.addProvider(new CompressiumItemTagProvider(generator, compressiumBlockTagProvider,event.getExistingFileHelper()));
         }
     }
 }
