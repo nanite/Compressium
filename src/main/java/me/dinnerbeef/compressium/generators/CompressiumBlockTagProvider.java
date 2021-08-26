@@ -20,34 +20,33 @@ public class CompressiumBlockTagProvider extends BlockTagsProvider {
         // I mean it works right?
         enum requiresWood{
             ANDESITE,
+            COAL,
             CLAY,
             COBBLESTONE,
             DIORITE,
             DIRT,
+            ENDSTONE,
             GRANITE,
             GRAVEL,
             REDSTONE,
+            NETHERRACK,
             SAND,
             SNOW,
             SOULSAND,
             STONE,
+            QUARTZ,
         }
         enum requiresStone{
-            COAL,
+            COPPER,
             IRON,
             LAPIS,
-            NETHERRACK
         }
         enum requiresIron{
-            COPPER,
             DIAMOND,
             EMERALD,
             GOLD,
-            QUARTZ,
-            REDSTONE
         }
         enum requiresDiamond{
-            ENDSTONE,
             OBSIDIAN,
             NETHERITE
         }
@@ -61,7 +60,7 @@ public class CompressiumBlockTagProvider extends BlockTagsProvider {
             EMERALD,
             ENDSTONE,
             GOLD,
-            GRAVEL,
+            GRANITE,
             IRON,
             LAPIS,
             NETHERITE,

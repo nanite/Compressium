@@ -1,15 +1,6 @@
 {
   "replace": false,
   "values": [
-    "compressium:copper_1",
-    "compressium:copper_2",
-    "compressium:copper_3",
-    "compressium:copper_4",
-    "compressium:copper_5",
-    "compressium:copper_6",
-    "compressium:copper_7",
-    "compressium:copper_8",
-    "compressium:copper_9",
     "compressium:diamond_1",
     "compressium:diamond_2",
     "compressium:diamond_3",
@@ -36,24 +27,6 @@
     "compressium:gold_6",
     "compressium:gold_7",
     "compressium:gold_8",
-    "compressium:gold_9",
-    "compressium:quartz_1",
-    "compressium:quartz_2",
-    "compressium:quartz_3",
-    "compressium:quartz_4",
-    "compressium:quartz_5",
-    "compressium:quartz_6",
-    "compressium:quartz_7",
-    "compressium:quartz_8",
-    "compressium:quartz_9",
-    "compressium:redstone_1",
-    "compressium:redstone_2",
-    "compressium:redstone_3",
-    "compressium:redstone_4",
-    "compressium:redstone_5",
-    "compressium:redstone_6",
-    "compressium:redstone_7",
-    "compressium:redstone_8",
-    "compressium:redstone_9"
+    "compressium:gold_9"
   ]
 }

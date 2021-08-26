@@ -1,15 +1,15 @@
 {
   "replace": false,
   "values": [
-    "compressium:coal_1",
-    "compressium:coal_2",
-    "compressium:coal_3",
-    "compressium:coal_4",
-    "compressium:coal_5",
-    "compressium:coal_6",
-    "compressium:coal_7",
-    "compressium:coal_8",
-    "compressium:coal_9",
+    "compressium:copper_1",
+    "compressium:copper_2",
+    "compressium:copper_3",
+    "compressium:copper_4",
+    "compressium:copper_5",
+    "compressium:copper_6",
+    "compressium:copper_7",
+    "compressium:copper_8",
+    "compressium:copper_9",
     "compressium:iron_1",
     "compressium:iron_2",
     "compressium:iron_3",
@@ -27,15 +27,6 @@
     "compressium:lapis_6",
     "compressium:lapis_7",
     "compressium:lapis_8",
-    "compressium:lapis_9",
-    "compressium:netherrack_1",
-    "compressium:netherrack_2",
-    "compressium:netherrack_3",
-    "compressium:netherrack_4",
-    "compressium:netherrack_5",
-    "compressium:netherrack_6",
-    "compressium:netherrack_7",
-    "compressium:netherrack_8",
-    "compressium:netherrack_9"
+    "compressium:lapis_9"
   ]
 }
