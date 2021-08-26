@@ -7,17 +7,23 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
-
 }
+
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+
+apply from: 'https://files.saps.dev/ci/git-md-changelog.gradle'
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 def ENV = System.getenv()
-def buildNumber = ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "custom"
-version = "${mod_version}." + buildNumber
-group = '${group_id}'
-archivesBaseName = "Compressium-${minecraft_version}"
+
+version = "${mod_version}-build.${ENV.GITHUB_RUN_NUMBER ?: 9999}+mc${minecraft_version}"
+group = "${group_id}"
+archivesBaseName = "Compressium"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
@@ -107,4 +113,42 @@ def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact(jar) {
+                classifier null
+            }
+        }
+    }
+
+    repositories {
+        if (ENV.NANITE_DEPLOY) {
+            maven {
+                url "https://maven.nanite.dev/"
+                credentials {
+                    username = "nanite"
+                    password = "${ENV.NANITE_DEPLOY}"
+                }
+            }
+        }
+    }
+}
+
+if (ENV.CURSE_DEPLOY) {
+    curseforge {
+        apiKey = ENV.CURSE_DEPLOY
+        project {
+            id = project.curseforge_id
+            releaseType = "release"
+            addGameVersion "Forge"
+            addGameVersion "${minecraft_version}"
+            mainArtifact(remapJar.archivePath)
+            changelog = getGitChangelog
+            changelogType = 'markdown'
+        }
+    }
 }
