@@ -25,7 +25,7 @@ version = "${mod_version}-build.${ENV.GITHUB_RUN_NUMBER ?: 9999}+mc${minecraft_v
 group = "${group_id}"
 archivesBaseName = "Compressium"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 processResources.duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
