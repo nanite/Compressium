@@ -3,7 +3,7 @@ package me.dinnerbeef.compressium.generators;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import me.dinnerbeef.compressium.Compressium;
-import me.dinnerbeef.compressium.CompressiumType;
+import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.LootTableProvider;
@@ -45,17 +45,13 @@ public class CompressiumLootTableProvider extends LootTableProvider {
 
         @Override
         protected void addTables() {
-            for (CompressiumType type : CompressiumType.VALUES) {
-                Stream.of(Compressium.BLOCKS.get(type.name)).forEach(this::dropSelf);
-            }
+            Compressium.REGISTERED_BLOCKS.forEach((k, v) -> v.forEach(e -> this.dropSelf(e.get())));
         }
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
             List<Block> blocks = new ArrayList<>();
-            for (CompressiumType type : CompressiumType.VALUES) {
-                blocks.addAll(Arrays.asList(Compressium.BLOCKS.get(type.name)));
-            }
+            Compressium.REGISTERED_BLOCKS.forEach((k, v) -> v.forEach(e -> blocks.add(e.get())));
             return blocks;
         }
 

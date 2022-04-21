@@ -14,6 +14,7 @@ plugins {
 }
 
 apply from: 'https://files.saps.dev/ci/git-md-changelog.gradle'
+apply from: "https://raw.githubusercontent.com/mezz/JustEnoughItems/1.18/Forge/buildtools/AppleSiliconSupport.gradle"
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
@@ -94,8 +95,9 @@ minecraft {
 }
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation('cpw.mods:securejarhandler') { version { strictly '0.9.45' } }
+
 }
+
 jar {
     manifest {
         attributes([

@@ -1,11 +1,11 @@
 package me.dinnerbeef.compressium.generators;
 
 import me.dinnerbeef.compressium.Compressium;
-import me.dinnerbeef.compressium.CompressiumType;
+import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
 import net.minecraft.data.*;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -16,33 +16,36 @@ public class CompressiumRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        for (CompressiumType type : CompressiumType.VALUES) {
-            Block[] blockList = Compressium.BLOCKS.get(type.name);
-            Block baseBlock = type.getBaseBlock();
+        Compressium.REGISTERED_BLOCKS.forEach((k, v) -> {
+            var name = k.name().toLowerCase();
+
+            Block baseBlock = ForgeRegistries.BLOCKS.getValue(k.baseResourceLocation());
             ShapelessRecipeBuilder // Uses Minecraft Blocks Here
                     .shapeless(baseBlock, 9)
-                    .requires(blockList[0])
-                    .unlockedBy("has_compressed_" + type.name + "_x1", has(blockList[0]))
-                    .save(consumer, Compressium.MODID + ":" + type.name + "_" + 1 + "_uncraft");
+                    .requires(v.get(0).get())
+                    .unlockedBy("has_compressed_" + name + "_x1", has(v.get(0).get()))
+                    .save(consumer, Compressium.MODID + ":" + name + "_" + 1 + "_uncraft");
             ShapedRecipeBuilder
-                    .shaped(blockList[0])
+                    .shaped(v.get(0).get())
                     .define('#', baseBlock)
                     .pattern("###").pattern("###").pattern("###")
-                    .unlockedBy("has_" + type.name, has(baseBlock))
+                    .unlockedBy("has_" + name, has(baseBlock))
                     .save(consumer);
-            for (int i = 1; i < 9; i++) { // Does Not Use Minecraft Blocks Here
+
+            for (int i = 0; i < v.size() - 1; i ++) {
+                int index = i + 1;
                 ShapelessRecipeBuilder
-                        .shapeless(blockList[i - 1], 9)
-                        .requires(blockList[i])
-                        .unlockedBy("has_compressed_" + type.name + "_x" + (i + 1), has(blockList[i]))
-                        .save(consumer, Compressium.MODID + ":" + type.name + "_" + (i + 1) + "_uncraft");
+                        .shapeless(v.get(index - 1).get(), 9)
+                        .requires(v.get(index).get())
+                        .unlockedBy("has_compressed_" + name + "_x" + (index + 1), has(v.get(index).get()))
+                        .save(consumer, Compressium.MODID + ":" + name + "_" + (index + 1) + "_uncraft");
                 ShapedRecipeBuilder
-                        .shaped(blockList[i])
-                        .define('#', blockList[i - 1])
+                        .shaped(v.get(index).get())
+                        .define('#', v.get(index - 1).get())
                         .pattern("###").pattern("###").pattern("###")
-                        .unlockedBy("has_compressed_" + type.name + "_x" + i, has(blockList[i - 1]))
+                        .unlockedBy("has_compressed_" + name + "_x" + index, has(v.get(index - 1).get()))
                         .save(consumer);
-            }
-        }
+            };
+        });
     }
 }

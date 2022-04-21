@@ -7,7 +7,6 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class CompressiumItemTagProvider extends ItemTagsProvider {
-
     public CompressiumItemTagProvider(DataGenerator gen, BlockTagsProvider provider, ExistingFileHelper exFileHelper) {
         super(gen, provider ,Compressium.MODID, exFileHelper);
     }
