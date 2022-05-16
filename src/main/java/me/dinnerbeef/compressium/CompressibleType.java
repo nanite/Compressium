@@ -1,10 +1,7 @@
 package me.dinnerbeef.compressium;
 
 import com.google.gson.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.NetherrackBlock;
-import net.minecraft.world.level.block.PoweredBlock;
-import net.minecraft.world.level.block.SoulSandBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import org.apache.logging.log4j.LogManager;
@@ -17,11 +14,17 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public enum CompressibleType {
-    BLOCK("block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE))),
-    FALLING("falling", () -> new FallingDamageBlock(BlockBehaviour.Properties.of(Material.SAND))),
-    NETHER_RACK("nether_rack", () -> new NetherrackBlock(BlockBehaviour.Properties.of(Material.STONE))),
-    SOUL_SAND("soul_sand", () -> new SoulSandBlock(BlockBehaviour.Properties.of(Material.SAND))),
-    POWERED("powered", () -> new PoweredBlock(BlockBehaviour.Properties.of(Material.STONE)));
+    BLOCK("block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE))),
+    METAL("block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.METAL))),
+    NETHER_METAL("block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK))),
+    DIRT("block", () -> new FallingDamageBlock(BlockBehaviour.Properties.of(Material.DIRT).strength(1.5f).sound(SoundType.GRAVEL))),
+    CLAY("block", () -> new FallingDamageBlock(BlockBehaviour.Properties.of(Material.CLAY).strength(1.5f).sound(SoundType.GRAVEL))),
+    COPPER("block", () -> new FallingDamageBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.COPPER))),
+    SAND("falling", () -> new FallingDamageBlock(BlockBehaviour.Properties.of(Material.SAND).strength(1.5f).sound(SoundType.SAND))),
+    GRAVEL("falling", () -> new FallingDamageBlock(BlockBehaviour.Properties.of(Material.SAND).strength(1.5f).sound(SoundType.GRAVEL))),
+    NETHER_RACK("nether_rack", () -> new NetherrackBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.NETHERRACK))),
+    SOUL_SAND("soul_sand", () -> new SoulSandBlock(BlockBehaviour.Properties.of(Material.SAND).strength(1.5f).sound(SoundType.SOUL_SAND))),
+    POWERED("powered", () -> new PoweredBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
     private String blockType;
     private Supplier<? extends Block> constructor;
