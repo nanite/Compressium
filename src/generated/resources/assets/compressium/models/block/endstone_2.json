@@ -1,9 +1,5 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "minecraft:block/end_stone"
-  },
-  "loader": "forge:multi-layer",
   "layers": {
     "solid": {
       "parent": "minecraft:block/end_stone"
@@ -14,5 +10,9 @@
         "all": "compressium:block/layer_2"
       }
     }
+  },
+  "loader": "forge:multi-layer",
+  "textures": {
+    "particle": "minecraft:block/end_stone"
   }
 }

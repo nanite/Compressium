@@ -1,9 +1,5 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "minecraft:block/diamond_block"
-  },
-  "loader": "forge:multi-layer",
   "layers": {
     "solid": {
       "parent": "minecraft:block/diamond_block"
@@ -14,5 +10,9 @@
         "all": "compressium:block/layer_3"
       }
     }
+  },
+  "loader": "forge:multi-layer",
+  "textures": {
+    "particle": "minecraft:block/diamond_block"
   }
 }

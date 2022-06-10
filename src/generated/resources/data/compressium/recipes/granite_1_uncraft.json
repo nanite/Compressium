@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:granite",
-    "count": 9
+    "count": 9,
+    "item": "minecraft:granite"
   }
 }

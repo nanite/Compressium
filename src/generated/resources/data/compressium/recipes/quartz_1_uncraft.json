@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:quartz_block",
-    "count": 9
+    "count": 9,
+    "item": "minecraft:quartz_block"
   }
 }

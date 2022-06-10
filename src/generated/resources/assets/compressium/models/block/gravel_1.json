@@ -1,9 +1,5 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "minecraft:block/gravel"
-  },
-  "loader": "forge:multi-layer",
   "layers": {
     "solid": {
       "parent": "minecraft:block/gravel"
@@ -14,5 +10,9 @@
         "all": "compressium:block/layer_1"
       }
     }
+  },
+  "loader": "forge:multi-layer",
+  "textures": {
+    "particle": "minecraft:block/gravel"
   }
 }

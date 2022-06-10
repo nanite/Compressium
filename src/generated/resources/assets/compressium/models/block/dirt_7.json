@@ -1,9 +1,5 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "minecraft:block/dirt"
-  },
-  "loader": "forge:multi-layer",
   "layers": {
     "solid": {
       "parent": "minecraft:block/dirt"
@@ -14,5 +10,9 @@
         "all": "compressium:block/layer_7"
       }
     }
+  },
+  "loader": "forge:multi-layer",
+  "textures": {
+    "particle": "minecraft:block/dirt"
   }
 }

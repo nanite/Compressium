@@ -1,15 +1,20 @@
 package me.dinnerbeef.compressium.generators;
 
+import com.mojang.logging.LogUtils;
 import me.dinnerbeef.compressium.Compressium;
 import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
 import net.minecraft.data.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.slf4j.Logger;
 
 import java.util.function.Consumer;
 
 public class CompressiumRecipeProvider extends RecipeProvider {
+
+    private static final Logger LOGGER = LogUtils.getLogger();
+
     public CompressiumRecipeProvider(DataGenerator generator) {
         super(generator);
     }
@@ -18,7 +23,6 @@ public class CompressiumRecipeProvider extends RecipeProvider {
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         Compressium.REGISTERED_BLOCKS.forEach((k, v) -> {
             var name = k.name().toLowerCase();
-
             Block baseBlock = ForgeRegistries.BLOCKS.getValue(k.baseResourceLocation());
             ShapelessRecipeBuilder // Uses Minecraft Blocks Here
                     .shapeless(baseBlock, 9)

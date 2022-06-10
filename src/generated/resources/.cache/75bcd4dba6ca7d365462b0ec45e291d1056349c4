@@ -1,0 +1,8 @@
+// 1.19	2022-06-09T19:36:30.8035609	Tags for minecraft:block
+990bb58ad0df76bce695113a35f2336835502dc3 data/forge/tags/blocks/needs_wood_tool.json
+a62a02d92ef118d655cbe6ba84cbe4f9c9fd9fdb data/minecraft/tags/blocks/beacon_base_blocks.json
+0bbfac9d49e3bb641e94f58b4d1378580a1d0303 data/minecraft/tags/blocks/mineable/pickaxe.json
+32a7b32a6c1ac118000e0d1909cb7c8ad80ef4a9 data/minecraft/tags/blocks/mineable/shovel.json
+6f3437ceb069af842bc2c67f1c9aedc90117d2f9 data/minecraft/tags/blocks/needs_diamond_tool.json
+4760343a9dc91a6a7001cdbe4a50834bec2ef06a data/minecraft/tags/blocks/needs_iron_tool.json
+cf5d7e38e044b719084d90a3c616109d09dd9b4f data/minecraft/tags/blocks/needs_stone_tool.json
