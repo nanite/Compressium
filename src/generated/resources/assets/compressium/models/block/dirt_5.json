@@ -1,17 +1,21 @@
 {
   "parent": "minecraft:block/block",
-  "layers": {
-    "solid": {
+  "children": {
+    "Solid": {
       "parent": "minecraft:block/dirt"
     },
-    "translucent": {
+    "Translucent": {
       "parent": "minecraft:block/cube_all",
       "textures": {
         "all": "compressium:block/layer_5"
       }
     }
   },
-  "loader": "forge:multi-layer",
+  "item_render_order": [
+    "Solid",
+    "Translucent"
+  ],
+  "loader": "forge:composite",
   "textures": {
     "particle": "minecraft:block/dirt"
   }

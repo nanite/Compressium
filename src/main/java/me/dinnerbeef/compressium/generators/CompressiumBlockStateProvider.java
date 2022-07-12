@@ -6,8 +6,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.model.CompositeModel;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.loaders.MultiLayerModelBuilder;
+import net.minecraftforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Supplier;
@@ -26,10 +27,10 @@ public class CompressiumBlockStateProvider extends BlockStateProvider {
                 simpleBlock(block.get(), models().getBuilder(Compressium.MODID + ":" + k.name().toLowerCase() + "_" + (i + 1))
                         .parent(this.models().getExistingFile(mcLoc("block/block")))
                         .texture("particle", k.particlePath())
-                        .customLoader(MultiLayerModelBuilder::begin)
-                        .submodel(RenderType.solid(),
+                        .customLoader(CompositeModelBuilder::begin)
+                        .child("Solid",
                                 this.models().nested().parent(this.models().getExistingFile(k.baseBlockModel())))
-                        .submodel(RenderType.translucent(),
+                        .child("Translucent",
                                 this.models().nested().parent(this.models().getExistingFile(mcLoc("block/cube_all")))
                                         .texture("all", new ResourceLocation(Compressium.MODID, "block/layer_" + (i + 1))))
                         .end());
