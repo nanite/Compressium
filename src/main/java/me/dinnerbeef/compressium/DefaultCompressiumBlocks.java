@@ -8,6 +8,10 @@ import java.util.List;
 public enum DefaultCompressiumBlocks {
     COBBLESTONE("cobblestone", "cobblestone", "block/cobblestone", "block/cobblestone", false),
     STONE("stone", "stone", "block/stone", "block/stone", false),
+
+    COBBLEDDEEPSLATE("cobbled_deepslate", "cobbled_deepslate", "block/cobbled_deepslate", "block/cobbled_deepslate", false),
+    DEEPSLATE("deepslate", "deepslate", "block/deepslate", "block/deepslate", false),
+
     SAND("sand", "sand", "block/sand", "block/sand", CompressibleType.SAND, false),
     GRAVEL("gravel", "gravel", "block/gravel", "block/gravel",  CompressibleType.GRAVEL, false),
     NETHERRACK("netherrack", "netherrack", "block/netherrack", "block/netherrack", CompressibleType.NETHER_RACK, false),
