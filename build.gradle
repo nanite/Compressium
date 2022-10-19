@@ -13,7 +13,6 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-apply from: 'https://files.saps.dev/ci/git-md-changelog.gradle'
 apply from: "https://raw.githubusercontent.com/mezz/JustEnoughItems/1.18/Forge/buildtools/AppleSiliconSupport.gradle"
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -149,7 +148,7 @@ if (ENV.CURSE_DEPLOY) {
             addGameVersion "Forge"
             addGameVersion "${minecraft_version}"
             mainArtifact(jar)
-            changelog = getGitChangelog
+            changelog = file("./CHANGELOG.md")
             changelogType = 'markdown'
         }
     }

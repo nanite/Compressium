@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Mod(Compressium.MODID)
 public class Compressium {
@@ -30,7 +32,11 @@ public class Compressium {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final List<CompressibleBlock> COMPRESSIUM_BLOCKS = new ArrayList<>();
+    /**
+     * Using a map here allows us to avoid duplicates, we could use a set but meh, the equals is a little too
+     * allowing to properly invalidate duplicate name blocks
+     */
+    private static final HashMap<String, CompressibleBlock> COMPRESSIUM_BLOCKS = new HashMap<>();
     public static final HashMap<CompressibleBlock, List<Supplier<Block>>> REGISTERED_BLOCKS = new HashMap<>();
 
     public static final CreativeModeTab creativeTab = new CreativeModeTab(Compressium.MODID) {
@@ -59,15 +65,20 @@ public class Compressium {
         if (Files.exists(config)) {
             try {
                 CompressibleBlock[] compressableBlocks = new Gson().fromJson(Files.readString(config), CompressibleBlock[].class);
-                COMPRESSIUM_BLOCKS.addAll(Arrays.asList(compressableBlocks));
+                for (CompressibleBlock compressableBlock : compressableBlocks) {
+                    COMPRESSIUM_BLOCKS.put(compressableBlock.name(), compressableBlock);
+                }
 
-                List<String> foundBlocks = COMPRESSIUM_BLOCKS.stream().map(e -> e.name().toLowerCase()).toList();
+                List<String> foundBlocks = COMPRESSIUM_BLOCKS.values().stream().map(e -> e.name().toLowerCase()).toList();
                 List<DefaultCompressiumBlocks> missingDefaultBlocks = DefaultCompressiumBlocks.VALUES.stream().filter(e -> !foundBlocks.contains(e.name().toLowerCase())).toList();
 
                 if (missingDefaultBlocks.size() > 0) {
                     LOGGER.warn("Found a missing block from the default compressible blocks, adding it back.");
                     LOGGER.warn("We do not support dynamically removing default blocks to prevent basic registry issues.");
-                    COMPRESSIUM_BLOCKS.addAll(missingDefaultBlocks.stream().map(e -> e.block).toList());
+                    Map<String, CompressibleBlock> defaultBlocks = missingDefaultBlocks.stream().map(e -> e.block)
+                            .collect(Collectors.toMap(CompressibleBlock::name, Function.identity()));
+
+                    COMPRESSIUM_BLOCKS.putAll(defaultBlocks);
 
                     Files.writeString(config, new GsonBuilder().setPrettyPrinting().create().toJson(COMPRESSIUM_BLOCKS));
                 }
@@ -79,7 +90,7 @@ public class Compressium {
             LOGGER.info("Compressible blocks json not found. Creating a new one!");
             try {
                 List<CompressibleBlock> defaultBlocks = Arrays.stream(DefaultCompressiumBlocks.values()).map(e -> e.block).toList();
-                COMPRESSIUM_BLOCKS.addAll(defaultBlocks);
+                COMPRESSIUM_BLOCKS.putAll(Arrays.stream(DefaultCompressiumBlocks.values()).map(e -> e.block).collect(Collectors.toMap(CompressibleBlock::name, Function.identity())));
                 Files.writeString(config, new GsonBuilder().setPrettyPrinting().create().toJson(defaultBlocks));
             } catch (IOException e) {
                 LOGGER.error("Unable to write json file for compressible blocks data!");
@@ -93,7 +104,7 @@ public class Compressium {
     }
 
     private void registerBlocks(RegistryEvent.Register<Block> event) {
-        for (CompressibleBlock block : COMPRESSIUM_BLOCKS) {
+        for (CompressibleBlock block : COMPRESSIUM_BLOCKS.values()) {
             var registeredBlocks = new ArrayList<Supplier<Block>>();
             for (int i = 0; i < block.getNestedDepth(); i++) {
                 Block blockToRegister = block.type().getConstructor().get();
