@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "compressium:coal_1"
     }
   ],
   "result": {
-    "count": 9,
     "item": "minecraft:coal_block"
   }
 }

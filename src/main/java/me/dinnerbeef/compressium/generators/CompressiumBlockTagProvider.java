@@ -1,26 +1,40 @@
 package me.dinnerbeef.compressium.generators;
 
 import me.dinnerbeef.compressium.Compressium;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.VanillaBlockTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraft.tags.BlockTags;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class CompressiumBlockTagProvider extends BlockTagsProvider {
 
-    public CompressiumBlockTagProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, Compressium.MODID, exFileHelper);
+
+    public CompressiumBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, Compressium.MODID, existingFileHelper);
+    }
+
+
+    private <T extends Enum<?>> void addTagFromList(T[] values, TagKey<Block> tag) {
+        for (T value : values) {
+            // Find the type from the registered blocks based on the name of the compressed block type
+            List<Supplier<Block>> blockList = Compressium.REGISTERED_BLOCKS.entrySet().stream().filter(e -> e.getKey().name().equalsIgnoreCase(value.name())).findFirst().map(Map.Entry::getValue).orElse(List.of());
+            blockList.forEach(e -> tag(tag).add(e.get()));
+        }
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         // I mean it works right?
         enum RequiresWood {
             ANDESITE, COAL, CLAY, COBBLESTONE, DIORITE, DIRT, ENDSTONE, GRANITE, GRAVEL, REDSTONE, NETHERRACK, SAND, SNOW, SOULSAND, STONE, QUARTZ,
@@ -51,13 +65,5 @@ public class CompressiumBlockTagProvider extends BlockTagsProvider {
         addTagFromList(RequiresDiamond.values(), BlockTags.NEEDS_DIAMOND_TOOL);
         addTagFromList(RequiresPick.values(), BlockTags.MINEABLE_WITH_PICKAXE);
         addTagFromList(RequiresShovel.values(), BlockTags.MINEABLE_WITH_SHOVEL);
-    }
-
-    private <T extends Enum<?>> void addTagFromList(T[] values, TagKey<Block> tag) {
-        for (T value : values) {
-            // Find the type from the registered blocks based on the name of the compressed block type
-            List<Supplier<Block>> blockList = Compressium.REGISTERED_BLOCKS.entrySet().stream().filter(e -> e.getKey().name().equalsIgnoreCase(value.name())).findFirst().map(Map.Entry::getValue).orElse(List.of());
-            blockList.forEach(e -> tag(tag).add(e.get()));
-        }
     }
 }

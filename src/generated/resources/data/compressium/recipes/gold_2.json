@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "compressium:gold_1"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:gold_2"
-  }
+  },
+  "show_notification": true
 }

@@ -36,7 +36,8 @@ public enum DefaultCompressiumBlocks {
 
     CompressibleBlock block;
 
-    DefaultCompressiumBlocks(String n, String baseResourceLocation, String particlePath, String baseBlockModel, boolean isBlockOf) {        this(n, baseResourceLocation, particlePath, baseBlockModel, CompressibleType.BLOCK, isBlockOf);
+    DefaultCompressiumBlocks(String n, String baseResourceLocation, String particlePath, String baseBlockModel, boolean isBlockOf) {
+        this(n, baseResourceLocation, particlePath, baseBlockModel, CompressibleType.BLOCK, isBlockOf);
     }
 
     DefaultCompressiumBlocks(String n, String baseResourceLocation, String particlePath, String baseBlockModel) {

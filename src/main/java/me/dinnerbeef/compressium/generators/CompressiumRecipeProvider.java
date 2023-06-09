@@ -15,22 +15,22 @@ public class CompressiumRecipeProvider extends RecipeProvider {
 
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public CompressiumRecipeProvider(DataGenerator generator) {
-        super(generator);
+    public CompressiumRecipeProvider(PackOutput output) {
+        super(output);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         Compressium.REGISTERED_BLOCKS.forEach((k, v) -> {
             var name = k.name().toLowerCase();
             Block baseBlock = ForgeRegistries.BLOCKS.getValue(k.baseResourceLocation());
             ShapelessRecipeBuilder // Uses Minecraft Blocks Here
-                    .shapeless(baseBlock, 9)
+                    .shapeless(RecipeCategory.BUILDING_BLOCKS, baseBlock)
                     .requires(v.get(0).get())
                     .unlockedBy("has_compressed_" + name + "_x1", has(v.get(0).get()))
                     .save(consumer, Compressium.MODID + ":" + name + "_" + 1 + "_uncraft");
             ShapedRecipeBuilder
-                    .shaped(v.get(0).get())
+                    .shaped(RecipeCategory.BUILDING_BLOCKS, v.get(0).get())
                     .define('#', baseBlock)
                     .pattern("###").pattern("###").pattern("###")
                     .unlockedBy("has_" + name, has(baseBlock))
@@ -39,12 +39,12 @@ public class CompressiumRecipeProvider extends RecipeProvider {
             for (int i = 0; i < v.size() - 1; i ++) {
                 int index = i + 1;
                 ShapelessRecipeBuilder
-                        .shapeless(v.get(index - 1).get(), 9)
+                        .shapeless(RecipeCategory.BUILDING_BLOCKS, v.get(index - 1).get())
                         .requires(v.get(index).get())
                         .unlockedBy("has_compressed_" + name + "_x" + (index + 1), has(v.get(index).get()))
                         .save(consumer, Compressium.MODID + ":" + name + "_" + (index + 1) + "_uncraft");
                 ShapedRecipeBuilder
-                        .shaped(v.get(index).get())
+                        .shaped(RecipeCategory.BUILDING_BLOCKS, v.get(index).get())
                         .define('#', v.get(index - 1).get())
                         .pattern("###").pattern("###").pattern("###")
                         .unlockedBy("has_compressed_" + name + "_x" + index, has(v.get(index - 1).get()))

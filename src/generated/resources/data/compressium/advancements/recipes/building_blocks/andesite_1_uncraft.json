@@ -30,5 +30,6 @@
     "recipes": [
       "compressium:andesite_1_uncraft"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

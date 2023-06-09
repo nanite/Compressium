@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "compressium:gravel_2"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:gravel_3"
-  }
+  },
+  "show_notification": true
 }

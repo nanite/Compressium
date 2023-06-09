@@ -1,50 +1,38 @@
 package me.dinnerbeef.compressium.generators;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
 import me.dinnerbeef.compressium.Compressium;
-import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.ValidationContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
+import java.util.Set;
 
 public class CompressiumLootTableProvider extends LootTableProvider {
-    public CompressiumLootTableProvider(DataGenerator generator) {
-        super(generator);
+    public CompressiumLootTableProvider(PackOutput output) {
+        super(output, Set.of(), ImmutableList.of(
+                new SubProviderEntry(CompressiumBlockLoot::new, LootContextParamSets.BLOCK)
+        ));
     }
 
-    @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return ImmutableList.of(
-                Pair.of(CompressiumBlockLoot::new, LootContextParamSets.BLOCK)
-        );
-    }
+    private static class CompressiumBlockLoot extends BlockLootSubProvider {
 
-    @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
-        map.forEach((id, table) -> LootTables.validate(validationtracker, id, table));
-    }
-
-    private static class CompressiumBlockLoot extends BlockLoot {
+        protected  CompressiumBlockLoot() {
+            super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+        }
 
         @Override
-        protected void addTables() {
+        protected void generate() {
             Compressium.REGISTERED_BLOCKS.forEach((k, v) -> v.forEach(e -> this.dropSelf(e.get())));
         }
 

@@ -1,18 +1,14 @@
 package me.dinnerbeef.compressium.generators;
 
 import me.dinnerbeef.compressium.Compressium;
-import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import java.util.function.Supplier;
-
 public class CompressiumItemModelProvider extends ItemModelProvider {
-    public CompressiumItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Compressium.MODID, existingFileHelper);
+    public CompressiumItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, Compressium.MODID, existingFileHelper);
     }
 
     @Override

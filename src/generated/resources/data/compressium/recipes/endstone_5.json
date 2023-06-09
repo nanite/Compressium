@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "compressium:endstone_4"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:endstone_5"
-  }
+  },
+  "show_notification": true
 }

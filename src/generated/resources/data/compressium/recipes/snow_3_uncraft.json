@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "compressium:snow_3"
     }
   ],
   "result": {
-    "count": 9,
     "item": "compressium:snow_2"
   }
 }

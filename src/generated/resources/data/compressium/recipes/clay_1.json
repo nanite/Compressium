@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "minecraft:clay"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:clay_1"
-  }
+  },
+  "show_notification": true
 }

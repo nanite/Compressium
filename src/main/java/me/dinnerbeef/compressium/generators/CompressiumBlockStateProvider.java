@@ -1,22 +1,16 @@
 package me.dinnerbeef.compressium.generators;
 
 import me.dinnerbeef.compressium.Compressium;
-import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.CompositeModel;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import java.util.function.Supplier;
-
 public class CompressiumBlockStateProvider extends BlockStateProvider {
 
-    public CompressiumBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, Compressium.MODID, exFileHelper);
+    public CompressiumBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+        super(output, Compressium.MODID, exFileHelper);
     }
 
     @Override

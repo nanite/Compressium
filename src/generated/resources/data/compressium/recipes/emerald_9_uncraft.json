@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "compressium:emerald_9"
     }
   ],
   "result": {
-    "count": 9,
     "item": "compressium:emerald_8"
   }
 }

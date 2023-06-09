@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_stone_x3": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:stone_3"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:stone_4"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_stone_x3",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:stone_4"
+    ]
+  },
+  "sends_telemetry_event": false
+}

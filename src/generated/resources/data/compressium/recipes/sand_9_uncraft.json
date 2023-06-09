@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "compressium:sand_9"
     }
   ],
   "result": {
-    "count": 9,
     "item": "compressium:sand_8"
   }
 }

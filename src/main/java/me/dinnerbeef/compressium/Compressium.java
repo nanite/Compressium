@@ -3,14 +3,10 @@ package me.dinnerbeef.compressium;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -18,37 +14,37 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Supplier;
 
 @Mod(Compressium.MODID)
 public class Compressium {
     public static final String MODID = "compressium";
-
-    private static final Logger LOGGER = LogUtils.getLogger();
-
-    public static final CreativeModeTab creativeTab = new CreativeModeTab(Compressium.MODID) {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("compressium:cobblestone_1")));
-        }
-    };
-
-    public static final HashMap<CompressibleBlock, List<Supplier<Block>>> REGISTERED_BLOCKS = new HashMap<>();
-
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.Keys.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.Keys.ITEMS, MODID);
+    public static final DeferredRegister<CreativeModeTab> COMPRESSIUM_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+    public static final RegistryObject<CreativeModeTab> TAB = COMPRESSIUM_TAB.register(MODID, () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 1)
+            .icon(() -> new ItemStack(Items.COBBLESTONE))
+            .title(Component.translatable("itemGroup.compressium"))
+            .displayItems((config, builder) -> ITEMS.getEntries().forEach(entry -> builder.accept(entry.get())))
+            .build());
+    public static final HashMap<CompressibleBlock, List<Supplier<Block>>> REGISTERED_BLOCKS = new HashMap<>();
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     public Compressium() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ITEMS.register(eventBus);
         BLOCKS.register(eventBus);
+        COMPRESSIUM_TAB.register(eventBus);
         eventBus.addListener(this::clientSetup);
 
         loadBlocksFromConfig();
@@ -99,7 +95,7 @@ public class Compressium {
             for (int i = 0; i < block.getNestedDepth(); i++) {
                 String name = block.name().toLowerCase() + "_" + (i + 1);
                 Supplier<Block> blockSupplier = BLOCKS.register(name, () -> block.type().getConstructor().get());
-                ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), new Item.Properties().tab(creativeTab)));
+                ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), new Item.Properties()));
                 registeredBlocks.add(blockSupplier);
             }
             REGISTERED_BLOCKS.put(block, registeredBlocks);

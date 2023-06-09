@@ -1,20 +1,15 @@
 package me.dinnerbeef.compressium.generators;
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import me.dinnerbeef.compressium.Compressium;
-import me.dinnerbeef.compressium.DefaultCompressiumBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
-import java.io.*;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CompressiumLanguageProvider extends LanguageProvider {
-    public CompressiumLanguageProvider(DataGenerator gen, String locale) {
-        super(gen, Compressium.MODID, locale);
+    public CompressiumLanguageProvider(PackOutput output, String locale) {
+        super(output, Compressium.MODID, locale);
     }
 
     @Override

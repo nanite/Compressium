@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "compressium:obsidian_3"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:obsidian_4"
-  }
+  },
+  "show_notification": true
 }

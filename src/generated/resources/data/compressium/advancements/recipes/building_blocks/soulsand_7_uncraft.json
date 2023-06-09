@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_soulsand_x7": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressium:soulsand_7"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:soulsand_7_uncraft"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_compressed_soulsand_x7",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:soulsand_7_uncraft"
+    ]
+  },
+  "sends_telemetry_event": false
+}

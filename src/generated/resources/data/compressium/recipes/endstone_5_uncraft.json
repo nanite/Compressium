@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "compressium:endstone_5"
     }
   ],
   "result": {
-    "count": 9,
     "item": "compressium:endstone_4"
   }
 }

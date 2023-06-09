@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "compressium:netherrack_9"
     }
   ],
   "result": {
-    "count": 9,
     "item": "compressium:netherrack_8"
   }
 }

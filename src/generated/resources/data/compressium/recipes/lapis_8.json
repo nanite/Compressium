@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "compressium:lapis_7"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:lapis_8"
-  }
+  },
+  "show_notification": true
 }

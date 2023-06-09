@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "compressium:andesite_8"
@@ -12,5 +13,6 @@
   ],
   "result": {
     "item": "compressium:andesite_9"
-  }
+  },
+  "show_notification": true
 }
