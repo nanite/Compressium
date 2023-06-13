@@ -25,7 +25,7 @@ public class CompressiumRecipeProvider extends RecipeProvider {
             var name = k.name().toLowerCase();
             Block baseBlock = ForgeRegistries.BLOCKS.getValue(k.baseResourceLocation());
             ShapelessRecipeBuilder // Uses Minecraft Blocks Here
-                    .shapeless(RecipeCategory.BUILDING_BLOCKS, baseBlock)
+                    .shapeless(RecipeCategory.BUILDING_BLOCKS, baseBlock, 9)
                     .requires(v.get(0).get())
                     .unlockedBy("has_compressed_" + name + "_x1", has(v.get(0).get()))
                     .save(consumer, Compressium.MODID + ":" + name + "_" + 1 + "_uncraft");
@@ -39,7 +39,7 @@ public class CompressiumRecipeProvider extends RecipeProvider {
             for (int i = 0; i < v.size() - 1; i ++) {
                 int index = i + 1;
                 ShapelessRecipeBuilder
-                        .shapeless(RecipeCategory.BUILDING_BLOCKS, v.get(index - 1).get())
+                        .shapeless(RecipeCategory.BUILDING_BLOCKS, v.get(index - 1).get(), 9)
                         .requires(v.get(index).get())
                         .unlockedBy("has_compressed_" + name + "_x" + (index + 1), has(v.get(index).get()))
                         .save(consumer, Compressium.MODID + ":" + name + "_" + (index + 1) + "_uncraft");
