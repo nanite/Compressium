@@ -5,16 +5,18 @@ import com.google.gson.GsonBuilder;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
 import java.io.IOException;
@@ -29,10 +31,10 @@ import java.util.function.Supplier;
 @Mod(Compressium.MODID)
 public class Compressium {
     public static final String MODID = "compressium";
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.Keys.BLOCKS, MODID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.Keys.ITEMS, MODID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> COMPRESSIUM_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-    public static final RegistryObject<CreativeModeTab> TAB = COMPRESSIUM_TAB.register(MODID, () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 1)
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = COMPRESSIUM_TAB.register(MODID, () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 1)
             .icon(() -> new ItemStack(Items.COBBLESTONE))
             .title(Component.translatable("itemGroup.compressium"))
             .displayItems((config, builder) -> ITEMS.getEntries().forEach(entry -> builder.accept(entry.get())))
@@ -40,19 +42,16 @@ public class Compressium {
     public static final HashMap<CompressibleBlock, List<Supplier<Block>>> REGISTERED_BLOCKS = new HashMap<>();
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public Compressium() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ITEMS.register(eventBus);
-        BLOCKS.register(eventBus);
-        COMPRESSIUM_TAB.register(eventBus);
-        eventBus.addListener(this::clientSetup);
+    public Compressium(IEventBus modEventBus, ModContainer modContainer) {
+        ITEMS.register(modEventBus);
+        BLOCKS.register(modEventBus);
+        COMPRESSIUM_TAB.register(modEventBus);
+        modEventBus.addListener(CompressiumDataGenerator::dataClient);
 
         loadBlocksFromConfig();
     }
 
     private void loadBlocksFromConfig() {
-        // Attempt to load the blocks from the json file or create the json file for future launches and to allow users
-        // to add their own blocks as long as they provide their own data files as a data pack
         LOGGER.info("Loading compressible blocks from data store config/compressiumblocks.json");
 
         Path config = FMLPaths.CONFIGDIR.get().resolve("compressiumblocks.json");
@@ -89,21 +88,19 @@ public class Compressium {
             }
         }
 
-
         for (CompressibleBlock block : compressedBlocks) {
             var registeredBlocks = new ArrayList<Supplier<Block>>();
             for (int i = 0; i < block.getNestedDepth(); i++) {
                 String name = block.name().toLowerCase() + "_" + (i + 1);
-                Supplier<Block> blockSupplier = BLOCKS.register(name, () -> block.type().getConstructor().get());
-                ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), new Item.Properties()));
+                DeferredBlock<Block> blockSupplier = BLOCKS.register(name,
+                        id -> block.type().getConstructor().apply(
+                                BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id))
+                        ));
+                ITEMS.register(name, id -> new BlockItem(blockSupplier.get(),
+                        new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
                 registeredBlocks.add(blockSupplier);
             }
             REGISTERED_BLOCKS.put(block, registeredBlocks);
         }
     }
-
-    private void clientSetup(FMLClientSetupEvent event) {
-        CompressiumClient.setupItemVar();
-    }
-
 }

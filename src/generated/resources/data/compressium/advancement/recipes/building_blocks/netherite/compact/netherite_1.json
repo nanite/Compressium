@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:netherite_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:netherite/compact/netherite_1"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:netherite/compact/netherite_1"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "compressium:obsidian_3"
+  ],
+  "result": {
+    "count": 9,
+    "id": "compressium:obsidian_2"
+  }
+}

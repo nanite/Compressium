@@ -1,12 +1,15 @@
 package me.dinnerbeef.compressium;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
 
+// Client-only mod class — only loaded on the client side.
+@Mod(value = Compressium.MODID, dist = Dist.CLIENT)
 public class CompressiumClient {
-    public static void setupItemVar() {
-        Compressium.BLOCKS.getEntries().forEach(entry -> ItemBlockRenderTypes.setRenderLayer(entry.get(), renderType -> renderType == RenderType.solid() || renderType == RenderType.translucent()));
+    public CompressiumClient(IEventBus modEventBus, ModContainer modContainer) {
+        // Render types for composite models are handled via block properties in CompressibleType.
+        // Add any other client-only setup here.
     }
 }

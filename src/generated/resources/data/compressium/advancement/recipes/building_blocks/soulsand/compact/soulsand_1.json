@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_soulsand": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:soul_sand"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:soulsand/compact/soulsand_1"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_soulsand"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:soulsand/compact/soulsand_1"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "compressium:iron_4"
+  ],
+  "result": {
+    "count": 9,
+    "id": "compressium:iron_3"
+  }
+}

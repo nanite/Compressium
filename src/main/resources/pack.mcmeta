@@ -1,6 +1,8 @@
 {
     "pack": {
         "description": "compressium",
-        "pack_format": 8
+        "pack_format": 101,
+        "min_format": 101,
+        "max_format": 101
     }
 }

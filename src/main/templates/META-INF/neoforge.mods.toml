@@ -1,0 +1,28 @@
+license="${mod_license}"
+issueTrackerURL="https://github.com/nanite/Compressium"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="http://dinnerbeef.com"
+logoFile="Compressium_Logo.png"
+credits="Thanks to LatvianModder, Flanks, Mikey: Helping Write This Mod With Me. Thanks To Gigaherz: For The Textures"
+authors="DinnerBeef"
+description='''
+Adding compressed blocks to the game since 2019
+'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"

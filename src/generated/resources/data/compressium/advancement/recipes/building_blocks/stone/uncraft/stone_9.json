@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_stone_x9": {
+      "conditions": {
+        "items": [
+          {
+            "items": "compressium:stone_9"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:stone/uncraft/stone_9"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_compressed_stone_x9"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:stone/uncraft/stone_9"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "compressium:diamond_9"
+  ],
+  "result": {
+    "count": 9,
+    "id": "compressium:diamond_8"
+  }
+}

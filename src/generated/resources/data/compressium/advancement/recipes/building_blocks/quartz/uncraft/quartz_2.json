@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_quartz_x2": {
+      "conditions": {
+        "items": [
+          {
+            "items": "compressium:quartz_2"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:quartz/uncraft/quartz_2"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_compressed_quartz_x2"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:quartz/uncraft/quartz_2"
+    ]
+  }
+}

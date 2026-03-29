@@ -1,6 +1,6 @@
 package me.dinnerbeef.compressium;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +45,11 @@ public enum DefaultCompressiumBlocks {
     }
 
     DefaultCompressiumBlocks(String n, String baseResourceLocation, String particlePath, String baseBlockModel, CompressibleType type, boolean isBlockOf) {
-        this.block = new CompressibleBlock(n, new ResourceLocation("minecraft", baseResourceLocation), new ResourceLocation("minecraft", particlePath), new ResourceLocation("minecraft", baseBlockModel), type, 9, isBlockOf);
+        this.block = new CompressibleBlock(
+                n,
+                Identifier.parse("minecraft:" + baseResourceLocation),
+                Identifier.parse("minecraft:" + particlePath),
+                Identifier.parse("minecraft:" + baseBlockModel),
+                type, 9, isBlockOf);
     }
 }

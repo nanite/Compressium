@@ -2,7 +2,7 @@ package me.dinnerbeef.compressium.generators;
 
 import me.dinnerbeef.compressium.Compressium;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -17,8 +17,8 @@ public class CompressiumLanguageProvider extends LanguageProvider {
         add("itemGroup.compressium", "Compressium");
 
         Compressium.REGISTERED_BLOCKS.forEach((k, v) -> {
-            for (int i = 0; i < v.size(); i ++) {
-                add(v.get(i).get(), "Compressed " + (k.isBlockOf() ? "Block of " : "") + titleCase(k.name()) + " ("+(i+1)+"x)");
+            for (int i = 0; i < v.size(); i++) {
+                add(v.get(i).get(), "Compressed " + (k.isBlockOf() ? "Block of " : "") + titleCase(k.name()) + " (" + (i + 1) + "x)");
             }
         });
     }

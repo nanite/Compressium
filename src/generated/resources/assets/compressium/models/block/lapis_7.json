@@ -1,10 +1,10 @@
 {
   "parent": "minecraft:block/block",
   "children": {
-    "Solid": {
+    "block": {
       "parent": "minecraft:block/lapis_block"
     },
-    "Translucent": {
+    "overlay": {
       "parent": "minecraft:block/cube_all",
       "textures": {
         "all": "compressium:block/layer_7"
@@ -12,10 +12,10 @@
     }
   },
   "item_render_order": [
-    "Solid",
-    "Translucent"
+    "overlay",
+    "block"
   ],
-  "loader": "forge:composite",
+  "loader": "neoforge:composite",
   "textures": {
     "particle": "minecraft:block/lapis_block"
   }

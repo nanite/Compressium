@@ -1,129 +1,99 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
-
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-}
-
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.141'
+    id 'idea'
 }
 
-apply from: 'https://files.saps.dev/ci/git-md-changelog.gradle'
-apply from: "https://raw.githubusercontent.com/mezz/JustEnoughItems/1.18/Forge/buildtools/AppleSiliconSupport.gradle"
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
+version = mod_version
+group = mod_group_id
+
+sourceSets.main.resources {
+    srcDir('src/generated/resources')
+    exclude("**/*.bbmodel")
+    exclude("src/generated/**/.cache")
+}
+
+repositories {
+    // Add additional repositories here if needed.
+}
+
+base {
+    archivesName = mod_id
+}
+
+// Mojang ships Java 25 to end users in 26.1, so mods should target Java 25.
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            clientData()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // No additional dependencies beyond NeoForge
+}
+
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
 
 def ENV = System.getenv()
 
-version = "${mod_version}-build.${ENV.GITHUB_RUN_NUMBER ?: 9999}+mc${minecraft_version}"
-group = "${group_id}"
-archivesBaseName = "Compressium"
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-processResources.duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-sourceSets {
-    main {
-        resources {
-            srcDirs "src/generated/resources"
-            //But exclude the cache of the generated data from what gets built
-            exclude '.cache'
-        }
-    }
-}
-
-task copyConfig(type: Copy) {
-    from 'src/main/config'
-    into 'run/config'
-}
-
-sourceSets {
-    main {
-        resources {
-            srcDirs "src/generated/resources"
-            //But exclude the cache of the generated data from what gets built
-            exclude '.cache'
-        }
-    }
-}
-
-minecraft {
-    mappings channel: 'official', version: "${minecraft_version}"
-    runs {
-        client {
-            workingDirectory project.file('run')
-            mods {
-                compressium {
-                    source sourceSets.main
-                }
-            }
-        }
-        server {
-            workingDirectory project.file('run')
-            mods {
-                compressium {
-                    source sourceSets.main
-                }
-            }
-        }
-        data {
-
-            workingDirectory project.file('run')
-
-            copy {
-                from 'src/main/config'
-                into 'run/config'
-            }
-
-            args '--mod', 'compressium', '--all', '--output', file('src/generated/resources/'),"--existing","\"" + sourceSets.main.resources.srcDirs[0] + "\""
-
-            mods {
-                compressium {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
-dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
-}
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "compressium",
-                "Specification-Vendor"    : "",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : "${version}",
-                "Implementation-Vendor"   : "",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-def reobfFile = file("$buildDir/reobfJar/output.jar")
-def reobfArtifact = artifacts.add('default', reobfFile) {
-    type 'jar'
-    builtBy 'reobfJar'
-}
-
-
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact(jar) {
-                classifier null
-            }
+        register('mavenJava', MavenPublication) {
+            from components.java
         }
     }
 
@@ -140,17 +110,13 @@ publishing {
     }
 }
 
-if (ENV.CURSE_DEPLOY) {
-    curseforge {
-        apiKey = ENV.CURSE_DEPLOY
-        project {
-            id = project.curseforge_id
-            releaseType = "release"
-            addGameVersion "Forge"
-            addGameVersion "${minecraft_version}"
-            mainArtifact(jar)
-            changelog = getGitChangelog
-            changelogType = 'markdown'
-        }
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
     }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_endstone_x7": {
+      "conditions": {
+        "items": [
+          {
+            "items": "compressium:endstone_7"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:endstone/compact/endstone_8"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_compressed_endstone_x7"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:endstone/compact/endstone_8"
+    ]
+  }
+}

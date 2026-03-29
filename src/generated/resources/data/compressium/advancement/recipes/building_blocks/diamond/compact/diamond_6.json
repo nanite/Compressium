@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_diamond_x5": {
+      "conditions": {
+        "items": [
+          {
+            "items": "compressium:diamond_5"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:diamond/compact/diamond_6"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_compressed_diamond_x5"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:diamond/compact/diamond_6"
+    ]
+  }
+}
