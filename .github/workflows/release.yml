@@ -1,0 +1,20 @@
+name: Build & Release
+
+on:
+  push:
+    branches-ignore:
+      - "dev/**"
+
+jobs:
+  build:
+    if: |
+      !contains(github.event.head_commit.message, '[ciskip]')
+    uses: nanite/workflows/.github/workflows/standard-modmuss.yml@v1.1
+    with:
+      java-version: 25
+      release-to-github: false
+    secrets:
+      nanite-token: ${{ secrets.NANITE_DEPLOY }}
+      curse-token: ${{ secrets.CURSE_DEPLOY }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
