@@ -6,31 +6,31 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum DefaultCompressiumBlocks {
-    COBBLESTONE("cobblestone", "cobblestone", "block/cobblestone", "block/cobblestone", false),
+    // Stone family
     STONE("stone", "stone", "block/stone", "block/stone", false),
+    COBBLESTONE("cobblestone", "cobblestone", "block/cobblestone", "block/cobblestone", false),
+    DEEPSLATE("deepslate", "deepslate", "block/deepslate", "block/deepslate", false),
+    COBBLED_DEEPSLATE("cobbled_deepslate", "cobbled_deepslate", "block/cobbled_deepslate", "block/cobbled_deepslate", false),
+    GRAVEL("gravel", "gravel", "block/gravel", "block/gravel", CompressibleType.GRAVEL, false),
     SAND("sand", "sand", "block/sand", "block/sand", CompressibleType.SAND, false),
-    GRAVEL("gravel", "gravel", "block/gravel", "block/gravel",  CompressibleType.GRAVEL, false),
-    NETHERRACK("netherrack", "netherrack", "block/netherrack", "block/netherrack", CompressibleType.NETHER_RACK, false),
-    SNOW("snow", "snow_block", "block/snow", "block/snow_block", CompressibleType.POWERED, true),
-    SOULSAND("soulsand", "soul_sand", "block/soul_sand", "block/soul_sand", CompressibleType.SOUL_SAND, false),
+    // Earth
+    DIRT("dirt", "dirt", "block/dirt", "block/dirt", CompressibleType.DIRT, false),
+    CLAY("clay", "clay", "block/clay", "block/clay", CompressibleType.CLAY, false),
+    // Mineral blocks
+    COAL("coal", "coal_block", "block/coal_block", "block/coal_block"),
+    COPPER("copper", "copper_block", "block/copper_block", "block/copper_block", CompressibleType.COPPER, false),
     IRON("iron", "iron_block", "block/iron_block", "block/iron_block", CompressibleType.METAL, false),
     GOLD("gold", "gold_block", "block/gold_block", "block/gold_block", CompressibleType.METAL, false),
+    LAPIS("lapis", "lapis_block", "block/lapis_block", "block/lapis_block"),
+    REDSTONE("redstone", "redstone_block", "block/redstone_block", "block/redstone_block", CompressibleType.POWERED, true),
     DIAMOND("diamond", "diamond_block", "block/diamond_block", "block/diamond_block", CompressibleType.METAL, false),
     EMERALD("emerald", "emerald_block", "block/emerald_block", "block/emerald_block", CompressibleType.METAL, false),
-    CLAY("clay", "clay", "block/clay", "block/clay", CompressibleType.CLAY, false),
     NETHERITE("netherite", "netherite_block", "block/netherite_block", "block/netherite_block", CompressibleType.NETHER_METAL, false),
-    DIRT("dirt", "dirt", "block/dirt", "block/dirt", CompressibleType.DIRT, false),
-    COAL("coal", "coal_block", "block/coal_block", "block/coal_block"),
-    REDSAND("redsand", "red_sand", "block/red_sand", "block/red_sand", CompressibleType.SAND, true),
-    ENDSTONE("endstone", "end_stone", "block/end_stone", "block/end_stone"),
-    OBSIDIAN("obsidian", "obsidian", "block/obsidian", "block/obsidian"),
-    LAPIS("lapis", "lapis_block", "block/lapis_block", "block/lapis_block"),
+    // Nether
+    NETHERRACK("netherrack", "netherrack", "block/netherrack", "block/netherrack", CompressibleType.NETHER_RACK, false),
     QUARTZ("quartz", "quartz_block", "block/quartz_block_side", "block/quartz_block"),
-    REDSTONE("redstone", "redstone_block", "block/redstone_block", "block/redstone_block", CompressibleType.POWERED, true),
-    ANDESITE("andesite", "andesite", "block/andesite", "block/andesite"),
-    DIORITE("diorite", "diorite", "block/diorite", "block/diorite"),
-    COPPER("copper", "copper_block", "block/copper_block", "block/copper_block", CompressibleType.COPPER, false),
-    GRANITE("granite", "granite", "block/granite", "block/granite");
+    // End
+    ENDSTONE("endstone", "end_stone", "block/end_stone", "block/end_stone");
 
     public static final List<DefaultCompressiumBlocks> VALUES = Arrays.asList(values());
 

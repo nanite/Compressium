@@ -1,10 +1,7 @@
 package me.dinnerbeef.compressium;
 
-import com.google.gson.*;
-import com.google.gson.annotations.JsonAdapter;
 import net.minecraft.resources.Identifier;
 
-import java.lang.reflect.Type;
 import java.util.Objects;
 
 public final class CompressibleBlock {
@@ -12,14 +9,9 @@ public final class CompressibleBlock {
     private final int nestedDepth;
     private final boolean isBlockOf;
 
-    @JsonAdapter(IdentifierAdapter.class)
     private final Identifier baseResourceLocation;
-    @JsonAdapter(IdentifierAdapter.class)
     private final Identifier particlePath;
-    @JsonAdapter(IdentifierAdapter.class)
     private final Identifier baseBlockModel;
-
-    @JsonAdapter(CompressibleType.Serializer.class)
     private final CompressibleType type;
 
     public CompressibleBlock(
@@ -83,29 +75,4 @@ public final class CompressibleBlock {
         return Objects.hash(name, nestedDepth, isBlockOf, baseResourceLocation, particlePath, baseBlockModel, type);
     }
 
-    @Override
-    public String toString() {
-        return "CompressableBlock{" +
-                "name='" + name + '\'' +
-                ", nestedDepth=" + nestedDepth +
-                ", isBlockOf=" + isBlockOf +
-                ", baseResourceLocation=" + baseResourceLocation +
-                ", particlePath=" + particlePath +
-                ", baseBlockModel=" + baseBlockModel +
-                ", type=" + type +
-                '}';
-    }
-
-    /** GSON adapter for {@link Identifier} (replaces the old ResourceLocation.Serializer). */
-    public static class IdentifierAdapter implements JsonSerializer<Identifier>, JsonDeserializer<Identifier> {
-        @Override
-        public JsonElement serialize(Identifier src, Type typeOfSrc, JsonSerializationContext context) {
-            return new JsonPrimitive(src.toString());
-        }
-
-        @Override
-        public Identifier deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            return Identifier.parse(json.getAsString());
-        }
-    }
 }

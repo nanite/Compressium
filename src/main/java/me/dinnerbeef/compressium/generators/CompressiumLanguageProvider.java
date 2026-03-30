@@ -18,12 +18,13 @@ public class CompressiumLanguageProvider extends LanguageProvider {
 
         Compressium.REGISTERED_BLOCKS.forEach((k, v) -> {
             for (int i = 0; i < v.size(); i++) {
-                add(v.get(i).get(), "Compressed " + (k.isBlockOf() ? "Block of " : "") + titleCase(k.name()) + " (" + (i + 1) + "x)");
+                String key = "item." + Compressium.MODID + "." + k.name() + "_" + (i + 1);
+                add(key, "Compressed " + (k.isBlockOf() ? "Block of " : "") + titleCase(k.name()) + " (" + (i + 1) + "x)");
             }
         });
     }
 
     private static String titleCase(String input) {
-        return Arrays.stream(input.toLowerCase().split(" ")).map(e -> e.substring(0, 1).toUpperCase() + e.substring(1)).collect(Collectors.joining(" "));
+        return Arrays.stream(input.toLowerCase().split("[_ ]+")).map(e -> e.substring(0, 1).toUpperCase() + e.substring(1)).collect(Collectors.joining(" "));
     }
 }

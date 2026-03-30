@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_compressed_deepslate_x8": {
+      "conditions": {
+        "items": [
+          {
+            "items": "compressium:deepslate_8"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "compressium:deepslate/uncraft/deepslate_8"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_compressed_deepslate_x8"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "compressium:deepslate/uncraft/deepslate_8"
+    ]
+  }
+}

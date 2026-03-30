@@ -29,22 +29,22 @@ public class CompressiumBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         enum RequiresWood {
-            ANDESITE, COAL, CLAY, COBBLESTONE, DIORITE, DIRT, ENDSTONE, GRANITE, GRAVEL, REDSTONE, NETHERRACK, SAND, SNOW, SOULSAND, STONE, QUARTZ,
+            COAL, CLAY, COBBLESTONE, DIRT, ENDSTONE, GRAVEL, REDSTONE, NETHERRACK, SAND, STONE, QUARTZ,
         }
         enum RequiresStone {
-            COPPER, IRON, LAPIS,
+            COBBLED_DEEPSLATE, COPPER, DEEPSLATE, IRON, LAPIS,
         }
         enum RequiresIron {
             DIAMOND, EMERALD, GOLD,
         }
         enum RequiresDiamond {
-            OBSIDIAN, NETHERITE
+            NETHERITE
         }
         enum RequiresPick {
-            ANDESITE, COAL, COBBLESTONE, COPPER, DIAMOND, DIORITE, EMERALD, ENDSTONE, GOLD, GRANITE, IRON, LAPIS, NETHERITE, NETHERRACK, OBSIDIAN, QUARTZ, REDSTONE, STONE
+            COAL, COBBLED_DEEPSLATE, COBBLESTONE, COPPER, DEEPSLATE, DIAMOND, EMERALD, ENDSTONE, GOLD, IRON, LAPIS, NETHERITE, NETHERRACK, QUARTZ, REDSTONE, STONE
         }
         enum RequiresShovel {
-            CLAY, DIORITE, GRAVEL, SAND, SNOW, SOULSAND
+            CLAY, GRAVEL, SAND
         }
         enum BeaconBase {
             IRON, GOLD, DIAMOND, EMERALD, NETHERITE, COPPER
