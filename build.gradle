@@ -146,7 +146,7 @@ publishMods {
         serverRequired = true
         projectSlug = "compressium"
 
-        changelog = file("changelog.md").text
+        changelog = file("CHANGELOG.md").text
         changelogType = "markdown"
     }
 
