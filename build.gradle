@@ -141,6 +141,7 @@ publishMods {
         repository = "DinnerBeef/Compressium"
         commitish = "main"
         tagName = "release/${version}"
+        changelog = file("CHANGELOG.md").text
     }
 
     curseforge {
