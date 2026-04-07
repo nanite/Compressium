@@ -33,7 +33,40 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build and Publish to GitHub
-        run: ./gradlew build publishMods -PbuildNumber=${{ steps.release.outputs.count }}
+      - name: Build
+        run: ./gradlew build -PbuildNumber=${{ steps.release.outputs.count }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Compressium
+          path: build/libs/*.jar
+          retention-days: 5
+
+  publish-github:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Compressium
+          path: build/libs/
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Publish to GitHub
+        run: ./gradlew publishGithub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

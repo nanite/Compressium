@@ -136,6 +136,13 @@ publishMods {
     type = STABLE
     modLoaders.add("neoforge")
 
+    github {
+        accessToken = providers.environmentVariable("GITHUB_TOKEN")
+        repository = "DinnerBeef/Compressium"
+        commitish = "main"
+        tagName = "release/${version}"
+    }
+
     curseforge {
         projectId = "342929"
         accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
@@ -148,12 +155,5 @@ publishMods {
 
         changelog = file("CHANGELOG.md").text
         changelogType = "markdown"
-    }
-
-    github {
-        accessToken = providers.environmentVariable("GITHUB_TOKEN")
-        repository = "DinnerBeef/Compressium"
-        commitish = "main"
-        tagName = "release/${version}"
     }
 }
