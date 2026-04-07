@@ -139,7 +139,7 @@ publishMods {
     github {
         accessToken = providers.environmentVariable("GITHUB_TOKEN")
         repository = "nanite/Compressium"
-        commitish = project.hasProperty('defaultBranch') ? project.defaultBranch : "master"
+        commitish = project.hasProperty('defaultBranch') ? project.defaultBranch : "dev/26.1"
         tagName = "release/${version}"
         changelog = file("CHANGELOG.md").text
     }
