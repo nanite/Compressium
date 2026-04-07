@@ -1,10 +1,9 @@
-name: Release
+name: Build
 
 on:
   push:
     branches:
-      - '!dev/**'
-  workflow_dispatch:
+      - 'dev/**'
 
 permissions:
   contents: write
@@ -34,8 +33,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build and Publish
+      - name: Build and Publish to GitHub
         run: ./gradlew build publishMods -PbuildNumber=${{ steps.release.outputs.count }}
         env:
-          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

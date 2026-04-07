@@ -1,0 +1,22 @@
+{
+    "values": {
+        "compressium:coal_1": {
+            "burn_time": 144000
+        },
+        "compressium:coal_2": {
+            "burn_time": 1296000
+        },
+        "compressium:coal_3": {
+            "burn_time": 11664000
+        },
+        "compressium:coal_4": {
+            "burn_time": 104976000
+        },
+        "compressium:coal_5": {
+            "burn_time": 944784000
+        },
+        "compressium:coal_6": {
+            "burn_time": 2147483647
+        }
+    }
+}
