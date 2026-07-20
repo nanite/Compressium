@@ -22,7 +22,7 @@ public class CompressiumBlockTagProvider extends BlockTagsProvider {
     private <T extends Enum<?>> void addTagFromList(T[] values, TagKey<Block> tag) {
         for (T value : values) {
             List<Supplier<Block>> blockList = Compressium.REGISTERED_BLOCKS.entrySet().stream().filter(e -> e.getKey().name().equalsIgnoreCase(value.name())).findFirst().map(Map.Entry::getValue).orElse(List.of());
-            blockList.forEach(e -> tag(tag).add(e.get()));
+            blockList.forEach(e -> tag(tag).add(e.get().builtInRegistryHolder().key()));
         }
     }
 

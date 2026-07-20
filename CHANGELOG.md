@@ -1,5 +1,9 @@
 # Changelog
 
+## 26.2.0.0
+### Changed
+- Update to 26.2
+
 ## 26.1.1.0
 ### Added
 - Added neoforge:furnace_fuels data map for coal compressed blocks
